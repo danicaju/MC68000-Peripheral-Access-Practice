@@ -1,0 +1,6 @@
+# EASy68K generated files
+*.L68
+*.S68
+*.LST
+*.map
+*.bak
