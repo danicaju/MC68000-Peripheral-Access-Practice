@@ -1,32 +1,39 @@
-# Pr·ctica 2: Acceso a perifÈricos con soporte del sistema e interrupciones
+Ôªø# Pr√°ctica 2: Acceso a perif√©ricos con soporte del sistema e interrupciones
 
-Este repositorio contiene la soluciÛn a la Pr·ctica 2B de la asignatura **Estructura de Computadores II**. El objetivo de esta pr·ctica es programar en lenguaje ensamblador del microprocesador **MC68000** utilizando el entorno **EASy68K**, aplicando conceptos de acceso a perifÈricos con soporte del sistema e interrupciones.
+Este repositorio contiene la soluci√≥n a la Pr√°ctica 2B de la asignatura **Estructura de Computadores II**. El objetivo de esta pr√°ctica es programar en lenguaje ensamblador del microprocesador **MC68000** utilizando el entorno **EASy68K**, aplicando conceptos de acceso a perif√©ricos con soporte del sistema e interrupciones.
 
-## DescripciÛn del Proyecto (PRAC2B)
+## Descripci√≥n del Proyecto (PRAC2B)
 
-El programa muestra un cÌrculo en la ventana gr·fica que interact˙a con el usuario a travÈs del ratÛn:
-- **Movimiento**: El centro del cÌrculo sigue en todo momento la posiciÛn del cursor del ratÛn.
-- **InteracciÛn (Clic)**: El color del cÌrculo cambia dependiendo del estado del botÛn izquierdo del ratÛn:
-  - Si no est· pulsado: Interior y contorno verdes.
-  - Si est· pulsado: Interior rojo con contorno verde.
+El programa muestra un c√≠rculo en la ventana gr√°fica que interact√∫a con el usuario a trav√©s del rat√≥n:
+- **Movimiento**: El centro del c√≠rculo sigue en todo momento la posici√≥n del cursor del rat√≥n.
+- **Interacci√≥n (Clic)**: El color del c√≠rculo cambia dependiendo del estado del bot√≥n izquierdo del rat√≥n:
+  - Si no est√° pulsado: Interior y contorno verdes.
+  - Si est√° pulsado: Interior rojo con contorno verde.
 
-Adicionalmente, dependiendo del grupo de desarrollo, se incluyen efectos de sonido cuando el cÌrculo toca los bordes de la ventana (arriba, abajo, derecha, izquierda) y al realizar un clic.
+### Demostraci√≥n Gr√°fica
+
+| Sin Clic Izquierdo (Verde) | Con Clic Izquierdo (Rojo) |
+|:---:|:---:|
+| <img src="sin_click.png" alt="C√≠rculo verde sin clic" width="400"/> | <img src="con_click.png" alt="C√≠rculo rojo con clic" width="400"/> |
+
+Adicionalmente, dependiendo del grupo de desarrollo, se incluyen efectos de sonido cuando el c√≠rculo toca los bordes de la ventana (arriba, abajo, derecha, izquierda) y al realizar un clic.
 
 ## Archivos Incluidos
 
-- \PRAC2B.X68\: Programa principal que inicializa y gestiona la ejecuciÛn.
-- \SUBRTN.X68\: Archivo de subrutinas que contiene la lÛgica principal desarrollada para controlar la interacciÛn del ratÛn, redibujado de gr·ficos, gestiÛn de interrupciones y reproducciÛn de sonidos.
-- \PRAC2B.mp4\: VÌdeo demostrativo del funcionamiento esperado del programa.
+- \PRAC2B.X68\: Programa principal que inicializa y gestiona la ejecuci√≥n.
+- \SUBRTN.X68\: Archivo de subrutinas que contiene la l√≥gica principal desarrollada para controlar la interacci√≥n del rat√≥n, redibujado de gr√°ficos, gesti√≥n de interrupciones y reproducci√≥n de sonidos.
+- \PRAC2B.mp4\: V√≠deo demostrativo del funcionamiento esperado del programa.
+- \sin_click.png\ y \con_click.png\: Im√°genes demostrativas del funcionamiento de la ventana gr√°fica.
 
 ## Requisitos
 
-- Entorno de simulaciÛn **EASy68K** para ejecutar cÛdigo ensamblador del MC68000.
+- Entorno de simulaci√≥n **EASy68K** para ejecutar c√≥digo ensamblador del MC68000.
 
-## EjecuciÛn
+## Ejecuci√≥n
 
 1. Cargar el archivo \PRAC2B.X68\ en el entorno EASy68K.
 2. Ensamblar y ejecutar el programa.
-3. Interactuar con la ventana de E/S gr·fica (I/O) utilizando el ratÛn para comprobar el comportamiento descrito.
+3. Interactuar con la ventana de E/S gr√°fica (I/O) utilizando el rat√≥n para comprobar el comportamiento descrito.
 
 ---
-*Pr·ctica de 2∫ aÒo, 1r cuatrimestre.*
+*Pr√°ctica de 2¬∫ a√±o, 1r cuatrimestre.*
