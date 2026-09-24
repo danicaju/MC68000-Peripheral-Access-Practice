@@ -1,8 +1,8 @@
+ # Práctica 2: Acceso a periféricos con soporte del sistema e interrupciones
+
 ![Assembly](https://img.shields.io/badge/Assembly-6E4C13?style=for-the-badge&logo=gnubash&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
- 
- # Práctica 2: Acceso a periféricos con soporte del sistema e interrupciones
 
 Este repositorio contiene la solución a la Práctica 2B de la asignatura **Estructura de Computadores II**. El objetivo de esta práctica es programar en lenguaje ensamblador del microprocesador **MC68000** utilizando el entorno **EASy68K**, aplicando conceptos de acceso a periféricos con soporte del sistema e interrupciones.
 
