@@ -1,75 +1,80 @@
-# Control de Periféricos e Interrupciones en Ensamblador MC68000
+<p align="right">
+  <strong>Language:</strong>
+  <b>English</b> | <a href="README.es.md">Español</a>
+</p>
+
+# Peripheral Control and Interrupts in MC68000 Assembly
 
 <p align="center">
   <img src="https://img.shields.io/badge/Architecture-Motorola_68000-8A2BE2?style=for-the-badge" alt="Motorola 68000" />
   <img src="https://img.shields.io/badge/Simulator-EASy68K-0284C7?style=for-the-badge" alt="EASy68K Simulator" />
-  <img src="https://img.shields.io/badge/Subject-Estructura_de_Computadores_II-38BDF8?style=for-the-badge" alt="Estructura de Computadores II" />
+  <img src="https://img.shields.io/badge/Subject-Computer_Structure_II-38BDF8?style=for-the-badge" alt="Computer Structure II" />
   <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge" alt="Completed" />
   <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License MIT" />
 </p>
 
-Solución de programación a bajo nivel para la práctica de control de periféricos con soporte del sistema e interrupciones en la asignatura **Estructura de Computadores II** del Grado en Ingeniería Informática en la **Universitat de les Illes Balears (UIB)**.
+Low-level assembly engineering project covering system-supported peripheral access and hardware interrupts in the **Computer Architecture & Structure II** course of the Computer Engineering degree at **Universitat de les Illes Balears (UIB)**.
 
-El proyecto está implementado en lenguaje ensamblador del microprocesador **Motorola 68000 (MC68000)** y ejecutado sobre el entorno de simulación [EASy68K](http://www.easy68k.com/).
-
----
-
-## Descripción del Sistema
-
-La aplicación gestiona un entorno interactivo en tiempo real sobre la ventana de salida gráfica (640 &times; 480 px), donde un círculo vectorial responde de forma continua al movimiento y las acciones del ratón:
-
-- **Seguimiento Continuo del Cursor**: El centro geométrico del círculo ($r = 32\ \text{px}$) se sincroniza dinámicamente con las coordenadas cartesianas $(X, Y)$ reportadas por el periférico del ratón.
-- **Detección de Estado del Botón (Clic)**:
-  - **Reposo (sin pulsar)**: Relleno y contorno en color verde (`#00FF00`).
-  - **Pulsado (clic izquierdo activo)**: Relleno en color rojo (`#0000FF` en formato BGR) con contorno verde.
-- **Detección de Colisiones & Audio**: Detección de colisión del radio del círculo con los 4 límites de la pantalla (superior, inferior, izquierdo, derecho), activando señales acústicas asociadas al rebote y a la interacción con el botón.
+The project is implemented in **Motorola 68000 (MC68000)** assembly language and executed on the [EASy68K](http://www.easy68k.com/) simulation platform.
 
 ---
 
-## Arquitectura de E/S e Interrupciones
+## System Overview
 
-| Mecanismo / Periférico | Identificador | Función en la Práctica |
+The program drives a real-time interactive loop on the simulated graphical I/O display ($640 \times 480\ \text{px}$), where a vector circle responds continuously to user mouse movement and button events:
+
+- **Continuous Cursor Tracking**: The geometric center of the circle ($r = 32\ \text{px}$) dynamically tracks the Cartesian coordinates $(X, Y)$ reported by the mouse peripheral.
+- **Button State Detection (Click)**:
+  - **Resting state (unclicked)**: Fill and border rendered in green (`#00FF00`).
+  - **Active state (left click pressed)**: Fill rendered in red (`#0000FF` in BGR format) with green border.
+- **Collision Detection & Audio Feedback**: Real-time bounding collision detection against all four display boundaries (top, bottom, left, right), triggering acoustic sound signals on rebound and mouse click events.
+
+---
+
+## I/O & Interrupt Architecture
+
+| Peripheral / Mechanism | Identifier | Role in Implementation |
 | :--- | :---: | :--- |
-| **Interrupción de Ratón** | `INTRDMOU EQU 7` | Interrupción de nivel 7 para muestreo y captura de posición/estado del cursor. |
-| **Doble Búfer Gráfico** | `TRNUPDBF EQU 1` | Llamada al sistema (TRAP 1) para actualización atómica del búfer gráfico y eliminación de parpadeo (*flicker*). |
-| **Dibujado Vectorial** | `TRNPLGFX EQU 2` | Llamada al sistema (TRAP 2) para el trazado del círculo con radio y color dinámicos. |
-| **Resolución de Pantalla** | `640 × 480 px` | Coordenadas gestionadas mediante constantes `SCRWIDTH` y `SCRHEIGH`. |
+| **Mouse Interrupt** | `INTRDMOU EQU 7` | Level 7 interrupt handling mouse packet sampling, position reporting, and click state capture. |
+| **Double Buffering** | `TRNUPDBF EQU 1` | System call (TRAP 1) for atomic video buffer flip, eliminating visual flicker. |
+| **Vector Drawing** | `TRNPLGFX EQU 2` | System call (TRAP 2) for plotting the circle with dynamic radius and color. |
+| **Screen Resolution** | `640 × 480 px` | Coordinate geometry governed by `SCRWIDTH` and `SCRHEIGH` hardware constants. |
 
 ---
 
-## Demostración Gráfica
+## Graphical Demonstration
 
-| Estado Normal (Sin Clic) | Estado Activo (Con Clic Izquierdo) |
+| Resting State (No Click) | Active State (Left Click Pressed) |
 | :---: | :---: |
-| <img src="sin_click.png" alt="Círculo verde en reposo" width="400"/> | <img src="con_click.png" alt="Círculo rojo al pulsar clic" width="400"/> |
+| <img src="sin_click.png" alt="Green circle at rest" width="400"/> | <img src="con_click.png" alt="Red circle on click" width="400"/> |
 
-El repositorio incluye además una grabación en vídeo (`PRAC2B.mp4`) que ilustra el comportamiento en tiempo real, la fluidez del refresco de pantalla y los efectos de sonido.
+The repository also includes a video recording (`PRAC2B.mp4`) demonstrating real-time interaction, screen refresh rate, and acoustic feedback.
 
 ---
 
-## Estructura de Archivos
+## File Structure
 
 ```text
-├── PRAC2B.X68       # Archivo principal: constantes de hardware, inicialización y bucle de despacho
-├── SUBRTN.X68       # Subrutinas: cálculo de colisiones, rutinas de servicio (ISR), dibujado y audio
-├── PRAC2B.mp4       # Demostración en vídeo del funcionamiento interactivo
-├── sin_click.png    # Captura de pantalla en estado de reposo
-├── con_click.png    # Captura de pantalla con evento de clic activo
-└── LICENSE          # Licencia MIT
+├── PRAC2B.X68       # Main entry point: hardware constants, initialization, and dispatch loop
+├── SUBRTN.X68       # Subroutines: collision math, interrupt service routines (ISR), drawing, and audio
+├── PRAC2B.mp4       # Video demonstration of real-time execution
+├── sin_click.png    # Screen capture in resting state
+├── con_click.png    # Screen capture during active mouse click
+└── LICENSE          # MIT License
 ```
 
 ---
 
-## Requisitos y Ejecución
+## Requirements & Execution
 
-1. Descargar e instalar el simulador **[EASy68K](http://www.easy68k.com/)** (entorno de desarrollo y ejecución de ensamblador Motorola 68000 para Windows / Wine).
-2. Abrir el editor de código **EDIT68** y cargar el archivo fuente `PRAC2B.X68`.
-3. Pulsar **Assemble (F9)** para compilar y generar el archivo binario ejecutable (`.S68`).
-4. Abrir el simulador **SIM68 (F8)** y ejecutar el programa con **Run (F5)**.
-5. Interactuar con el ratón sobre la ventana gráfica de E/S para verificar el seguimiento del cursor, el cambio de color y los sonidos de rebote.
+1. Download and install the **[EASy68K](http://www.easy68k.com/)** simulator suite (Motorola 68000 development and execution environment for Windows / Wine).
+2. Open the code editor **EDIT68** and load the main source file `PRAC2B.X68`.
+3. Press **Assemble (F9)** to compile and generate the executable binary (`.S68`).
+4. Launch the simulator **SIM68 (F8)** and execute the program with **Run (F5)**.
+5. Interact with the graphical I/O display using your mouse to verify cursor tracking, color transitions, and boundary rebound sounds.
 
 ---
 
 <p align="center">
-  <sub>Estructura de Computadores II &middot; Universitat de les Illes Balears (UIB)</sub>
+  <sub>Computer Structure II &middot; Universitat de les Illes Balears (UIB)</sub>
 </p>
