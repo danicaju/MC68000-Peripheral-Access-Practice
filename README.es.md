@@ -76,5 +76,5 @@ El repositorio incluye además una grabación en vídeo (`PRAC2B.mp4`) que ilust
 ---
 
 <p align="center">
-  <sub>Estructura de Computadores II &middot; Universitat de les Illes Balears (UIB)</sub>
+  <sub>Estructura de Computadores II | Universitat de les Illes Balears (UIB)</sub>
 </p>

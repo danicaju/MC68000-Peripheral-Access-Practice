@@ -76,5 +76,5 @@ The repository also includes a video recording (`PRAC2B.mp4`) demonstrating real
 ---
 
 <p align="center">
-  <sub>Computer Structure II &middot; Universitat de les Illes Balears (UIB)</sub>
+  <sub>Computer Structure II | Universitat de les Illes Balears (UIB)</sub>
 </p>
